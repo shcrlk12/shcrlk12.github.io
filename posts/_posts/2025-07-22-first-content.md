@@ -93,11 +93,11 @@ Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo r
 
 Quisque consequat sapien eget quam rhoncus, sit amet laoreet diam tempus. Aliquam aliquam metus erat, a pulvinar turpis suscipit at.
 
-![800x400](https://shcrlk12.github.io/assets/img/test-image.png "Large example image")
+![800x400](https://shcrlk12.github.io/assets/img/blog/test-image.png "Large example image")
 
-![400x200](https://shcrlk12.github.io/assets/img/test-image.png "Medium example image")
+![400x200](https://shcrlk12.github.io/assets/img/blog/test-image.png "Medium example image")
 
-![200x200](https://shcrlk12.github.io/assets/img/test-image.png "Small example image")
+![200x200](https://shcrlk12.github.io/assets/img/blog/test-image.png "Small example image")
 
 ## Tables
 
