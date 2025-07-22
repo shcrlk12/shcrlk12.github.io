@@ -50,8 +50,6 @@ author:
 menu:
   - title: Posts
     url: /posts/
-  - title: Example
-    url: /example/
   - title: Documentation
     url: /docs/
   - title: About
