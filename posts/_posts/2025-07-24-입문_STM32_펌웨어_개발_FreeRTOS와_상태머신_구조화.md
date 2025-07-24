@@ -7,8 +7,6 @@ sitemap: true
 hide_last_modified: true
 ---
 
-## 개요
-
 STM32 보드에서 펌웨어를 작성할 때 **FreeRTOS 태스크 + 상태머신(FSM, Finite State Machine)** 조합은 코드 구조를 명확히 하고 유지보수를 쉽게 만들어 줍니다.
 이 글에서는 CubeMX로 생성한 프로젝트를 기반으로 주기적으로 실행되는 모니터링 태스크를 만들고, 그 내부 로직을 상태머신으로 관리하는 기본 패턴을 소개합니다.
 
