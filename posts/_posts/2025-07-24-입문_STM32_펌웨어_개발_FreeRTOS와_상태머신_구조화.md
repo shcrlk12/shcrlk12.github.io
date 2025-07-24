@@ -105,7 +105,6 @@ typedef enum {
 	MON_MAIN_STATE_ERROR = 30,
 	MON_MAIN_STATE_RESET = 40,
 } exampleTaskMainState_t;
-// Define task status end
 ```
 
 - 숫자를 띄워 두면(0,10,20,...) 디버깅 로그에서 육안 구분이 쉽고 중간에 새 상태를 끼워넣기 편합니다.
@@ -157,20 +156,20 @@ void Example_Task_Main_Loop()
 exampleTaskMainState_t Example_Task_Init(void)
 {
     if(Hardware_Init_OK())
-        return MON_MAIN_STATE_RUN;
+        return MON_MAIN_STATE_RUN;	// 초기화 성공, Run 상태로
     else
-        return MON_MAIN_STATE_ERROR;
+        return MON_MAIN_STATE_ERROR;  // 초기화 실패, Error 상태로
 }
 
 exampleTaskMainState_t Example_Task_Run(void)
 {
     if(Temp_Is_OverThreshold())
-        return MON_MAIN_STATE_WARNING;
+        return MON_MAIN_STATE_WARNING;	// Warning 발생
 
     if(Critical_Error_Detected())
-        return MON_MAIN_STATE_ERROR;
+        return MON_MAIN_STATE_ERROR;  // Error 발생
 
-    return MON_MAIN_STATE_RUN; // 유지
+    return MON_MAIN_STATE_RUN; // Run 유지
 }
 ```
 
