@@ -99,16 +99,17 @@ void Example_Task_Start(void *argument)
 
 ```c
 typedef enum {
-    MON_MAIN_STATE_INIT = 0,
-    MON_MAIN_STATE_RUN = 10,
-	MON_MAIN_STATE_WARNING = 20,
-	MON_MAIN_STATE_ERROR = 30,
-	MON_MAIN_STATE_RESET = 40,
+    EXAMPLE_MAIN_STATE_INIT = 0,
+    EXAMPLE_MAIN_STATE_RUN = 10,
+	EXAMPLE_MAIN_STATE_WARNING = 20,
+	EXAMPLE_MAIN_STATE_ERROR = 30,
+	EXAMPLE_MAIN_STATE_RESET = 40,
 } exampleTaskMainState_t;
 ```
 
 - 숫자를 띄워 두면(0,10,20,...) 디버깅 로그에서 육안 구분이 쉽고 중간에 새 상태를 끼워넣기 편합니다.
 - 상태 추가 시 반드시 전이 로직에 `case`를 추가하거나 `default` 처리로 안전망을 만드세요.
+  > EMERGENCY_ERROR 상태가 추가되어야 한다면, **EXAMPLE_MAIN_STATE_ERROR = 31** 처럼 `enum`에 추가가 가능합니다.
 
 ### 메인 루프
 
@@ -116,23 +117,23 @@ typedef enum {
 // Task main loop
 void Example_Task_Main_Loop()
 {
-	static exampleTaskMainState_t currentState = MON_MAIN_STATE_INIT;
+	static exampleTaskMainState_t currentState = EXAMPLE_MAIN_STATE_INIT;
 	static exampleTaskMainState_t nextState;
 
 	switch(currentState) {
-		case MON_MAIN_STATE_INIT:
+		case EXAMPLE_MAIN_STATE_INIT:
 			// Initialization
 			nextState = Example_Task_Init();
 			break;
-		case MON_MAIN_STATE_RUN:
+		case EXAMPLE_MAIN_STATE_RUN:
 			// Run
 			nextState = Example_Task_Run();
 			break;
-		case MON_MAIN_STATE_ERROR:
+		case EXAMPLE_MAIN_STATE_ERROR:
 			// Error
 			nextState = Example_Task_Error();
 			break;
-		case MON_MAIN_STATE_RESET:
+		case EXAMPLE_MAIN_STATE_RESET:
 			// Reset
 			nextState = Example_Task_Reset();
 			break;
@@ -156,20 +157,20 @@ void Example_Task_Main_Loop()
 exampleTaskMainState_t Example_Task_Init(void)
 {
     if(Hardware_Init_OK())
-        return MON_MAIN_STATE_RUN;	// 초기화 성공, Run 상태로
+        return EXAMPLE_MAIN_STATE_RUN;	// 초기화 성공, Run 상태로
     else
-        return MON_MAIN_STATE_ERROR;  // 초기화 실패, Error 상태로
+        return EXAMPLE_MAIN_STATE_ERROR;  // 초기화 실패, Error 상태로
 }
 
 exampleTaskMainState_t Example_Task_Run(void)
 {
     if(Temp_Is_OverThreshold())
-        return MON_MAIN_STATE_WARNING;	// Warning 발생
+        return EXAMPLE_MAIN_STATE_WARNING;	// Warning 발생
 
     if(Critical_Error_Detected())
-        return MON_MAIN_STATE_ERROR;  // Error 발생
+        return EXAMPLE_MAIN_STATE_ERROR;  // Error 발생
 
-    return MON_MAIN_STATE_RUN; // Run 유지
+    return EXAMPLE_MAIN_STATE_RUN; // Run 유지
 }
 ```
 
