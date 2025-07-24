@@ -35,7 +35,7 @@ keywords: []
 # A (square) logo for your site.
 # If provided, it will be shown at the top of the sidebar.
 # It also used by the `jekyll-seo-tag` plugin.
-logo: /assets/img/logo.png
+logo: /assets/img/common/logo.png
 
 # This should be the same author as first entry in `_data/authors.yml`.
 author:
@@ -78,18 +78,18 @@ paginate_path: /:num/
 # ---------------------------------------------------------------------------------------
 
 # This will use the gem `jekyll-theme-hydejack`, as defined in the sibling `Gemfile`.
-# theme: jekyll-theme-hydejack
+theme: jekyll-theme-hydejack
 
 # You can uncomment `theme` above and replace it with `remote_theme` here iff you are using the
 # `jekyll-remote-theme` plugin (which is the case when using the legacy GitHub Pages pipeline).
 # This will fetch the `v9` branch of the public Hydejack repository on GitHub.
-remote_theme: hydecorp/hydejack@v9
+# remogte_theme: hydecorp/hydejack@v9
 
 # Customizaton
 # ----------------------------------------------------------------------------------------
 
 # Sidebar image and theme color of the site.
-accent_image: /assets/img/sidebar-bg.jpg
+accent_image: /assets/img/common/sidebar-bg.jpg
 accent_color: rgb(79,177,186)
 
 # This is used for the `theme-color` meta tag,
