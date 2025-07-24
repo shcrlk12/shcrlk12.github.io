@@ -37,6 +37,8 @@ keywords: []
 # It also used by the `jekyll-seo-tag` plugin.
 logo: /assets/img/common/logo.png
 
+favicon: /assets/img/common/favicon.ico
+
 # This should be the same author as first entry in `_data/authors.yml`.
 author:
   # Used by `jekyll-feed`:
