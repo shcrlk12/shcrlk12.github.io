@@ -55,31 +55,31 @@ osThreadId_t controlTaskHandle;
 - 이후 `osThreadTerminate(controlTaskHandle)` 같은 API를 호출하거나, 디버깅/모니터링(상태 조회)에 사용합니다.
 
 ```c
-  exampleTaskHandle = osThreadNew(Monitoring_Task_Start, NULL, &exampleTask_attributes);
+  exampleTaskHandle = osThreadNew(Example_Task_Start, NULL, &exampleTask_attributes);
 ```
 
 태스크는 `osThreadNew()`로 생성합니다. (CMSIS-RTOS v2 래퍼가 FreeRTOS의 `xTaskCreate()`를 감싸고 있습니다.)
 
 ### 태스크 본체
 
-`Monitoring_Task_Start()` 안에서 실제 반복 루프를 돌립니다.
+`Example_Task_Start()` 안에서 실제 반복 루프를 돌립니다.
 고정된 주기를 정확히 맞추고 싶다면 `vTaskDelayUntil()`을 사용하는 것이 좋습니다. 이 함수는 **“지난 깨어난 시각 + 주기”까지 블록**하므로, 루프 내부에서 처리 시간이 약간 변동해도 평균 주기가 일정하게 유지됩니다.
 
 ```c
-void Monitoring_Task_Start(void *argument)
+void Example_Task_Start(void *argument)
 {
-  /* USER CODE BEGIN Monitoring_Task_Start */
+  /* USER CODE BEGIN Example_Task_Start */
 	TickType_t xLastWakeTime;
 
 	xLastWakeTime = xTaskGetTickCount();
   /* Infinite loop */
   for(;;)
   {
-	Monitoring_Task_Main_Loop();
+	Example_Task_Main_Loop();
 
     vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(50)); // Task period 50ms.
   }
-  /* USER CODE END Monitoring_Task_Start */
+  /* USER CODE END Example_Task_Start */
 }
 ```
 
@@ -115,7 +115,7 @@ typedef enum {
 
 ```c
 // Task main loop
-void Monitoring_Task_Main_Loop()
+void Example_Task_Main_Loop()
 {
 	static exampleTaskMainState_t currentState = MON_MAIN_STATE_INIT;
 	static exampleTaskMainState_t nextState;
@@ -123,19 +123,19 @@ void Monitoring_Task_Main_Loop()
 	switch(currentState) {
 		case MON_MAIN_STATE_INIT:
 			// Initialization
-			nextState = Monitoring_Task_Init();
+			nextState = Example_Task_Init();
 			break;
 		case MON_MAIN_STATE_RUN:
 			// Run
-			nextState = Monitoring_Task_Run();
+			nextState = Example_Task_Run();
 			break;
 		case MON_MAIN_STATE_ERROR:
 			// Error
-			nextState = Monitoring_Task_Error();
+			nextState = Example_Task_Error();
 			break;
 		case MON_MAIN_STATE_RESET:
 			// Reset
-			nextState = Monitoring_Task_Reset();
+			nextState = Example_Task_Reset();
 			break;
 	}
 
@@ -154,7 +154,7 @@ void Monitoring_Task_Main_Loop()
 각 상태별 함수는 현재 입력/센서 값 등을 검사하여 “다음 상태”를 반환합니다. 예:
 
 ```c
-exampleTaskMainState_t Monitoring_Task_Init(void)
+exampleTaskMainState_t Example_Task_Init(void)
 {
     if(Hardware_Init_OK())
         return MON_MAIN_STATE_RUN;
@@ -162,7 +162,7 @@ exampleTaskMainState_t Monitoring_Task_Init(void)
         return MON_MAIN_STATE_ERROR;
 }
 
-exampleTaskMainState_t Monitoring_Task_Run(void)
+exampleTaskMainState_t Example_Task_Run(void)
 {
     if(Temp_Is_OverThreshold())
         return MON_MAIN_STATE_WARNING;
