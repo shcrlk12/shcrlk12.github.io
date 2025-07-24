@@ -1,10 +1,10 @@
 ---
 layout: post
-title: \[입문\] STM32 펌웨어 개발 – FreeRTOS와 상태머신 구조화
+title: "STM32 펌웨어 개발 – FreeRTOS와 상태머신 구조화"
 description: >
   STM32 보드에서 FreeRTOS와 상태머신을 이용해 펌웨어를 구조화하는 방법
 sitemap: true
-hide_last_modified: false
+hide_last_modified: true
 ---
 
 STM32 보드에서 펌웨어를 작성할 때 **FreeRTOS 태스크 + 상태머신(FSM, Finite State Machine)** 조합은 코드 구조를 명확히 하고 유지보수를 쉽게 만들어 줍니다.
