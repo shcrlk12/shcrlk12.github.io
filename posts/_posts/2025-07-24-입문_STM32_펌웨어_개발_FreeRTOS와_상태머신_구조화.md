@@ -2,7 +2,7 @@
 layout: post
 title: "STM32 펌웨어 개발 – FreeRTOS와 상태머신 구조화"
 description: >
-  STM32 보드에서 FreeRTOS와 상태머신을 이용해 펌웨어를 구조화하는 방법
+  STM32 보드에서 FreeRTOS와 상태머신을 이용해 펌웨어를 구조화하는 방법을 알아봅니다.
 sitemap: true
 hide_last_modified: true
 ---
